@@ -1,5 +1,10 @@
-# use this genshi version to fix error when, for eg, you send arguments like "date=True" check this https://genshi.edgewall.org/ticket/600
-genshi==0.7.7
+# genshi >= 0.7.7 is required to fix the error raised when you send arguments
+# like "date=True", check this https://genshi.edgewall.org/ticket/600
+# genshi >= 0.7.8 additionally guards the ast.Ellipsis / ast.Str lookups behind
+# warnings.catch_warnings() with an ast.Constant fallback: without it the import
+# emits two DeprecationWarning on every boot under Python 3.12 and breaks
+# outright once those aliases are removed in Python 3.14.
+genshi==0.7.11
 # git+https://github.com/aeroo/aeroolib.git
 # waiting for PR https://github.com/aeroo/aeroolib/pull/12
 git+https://github.com/adhoc-dev/aeroolib@master-fix-ods
